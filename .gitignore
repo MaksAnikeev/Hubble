@@ -1,0 +1,11 @@
+*.env
+/.cache
+/.config
+/.upm
+/venv
+.replit
+*.zip
+*.lock
+*.toml
+*.nix
+
