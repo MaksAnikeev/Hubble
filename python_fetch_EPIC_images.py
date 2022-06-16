@@ -1,21 +1,18 @@
-import argparse
 import datetime
 import os
-import sys
 
 import requests
 from dotenv import load_dotenv
+
 from python_save_images import create_pictures
 
 
-def create_parser():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('nasa_api_key', nargs='?', default='DEMO_KEY')
-    return parser
-
-def fetch_epic_nasa_pictures(url, quantity_pictures, picture_path):
-    payload = {'api_key': namespase.nasa_api_key}
-    response = requests.get(url, params=payload)
+def fetch_epic_nasa_pictures(quantity_pictures, picture_path):
+    epic_url = 'https://api.nasa.gov/EPIC/api/natural/images'
+    load_dotenv()
+    nasa_api_key = os.environ['NASA_API_KEY']
+    payload = {'api_key': nasa_api_key}
+    response = requests.get(epic_url, params=payload)
     response.raise_for_status()
     pictures_url = []
     for i in range(0, quantity_pictures):
@@ -30,12 +27,4 @@ def fetch_epic_nasa_pictures(url, quantity_pictures, picture_path):
 
 
 if __name__ == '__main__':
-    load_dotenv()
-    nasa_api_key = os.environ['NASA_API_KEY']
-    parser = create_parser()
-    namespase = parser.parse_args(sys.argv[1:])
-
-    epic_url = 'https://api.nasa.gov/EPIC/api/natural/images'
-
-    fetch_epic_nasa_pictures(url=epic_url, quantity_pictures=10,
-                             picture_path='images/epic_nasa')
+    fetch_epic_nasa_pictures(quantity_pictures=10, picture_path='images/epic_nasa')
