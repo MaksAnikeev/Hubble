@@ -10,5 +10,6 @@
 *.nix
 /.idea
 /images
+/__pycache__
 
 
