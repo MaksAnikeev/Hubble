@@ -37,7 +37,5 @@ def send_picture(picture_directory, timer):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('timer', nargs='?', default=14400)
-    namespace = parser.parse_args(sys.argv[1:])
-    send_picture(picture_directory='images', timer=namespace.timer)
+    timer = os.getenv('timer', default=14400)
+    send_picture(picture_directory='images', timer=timer)
