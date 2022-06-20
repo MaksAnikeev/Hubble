@@ -7,9 +7,9 @@ import time
 import telegram
 from dotenv import load_dotenv
 
-from python_fetch_EPIC_images import fetch_epic_nasa_pictures
-from python_fetch_NASA_images import fetch_nasa_pictures
-from python_fetch_spacex_images import fetch_spacex_launch
+from fetch_EPIC_images import fetch_epic_nasa_pictures
+from fetch_NASA_images import fetch_nasa_pictures
+from fetch_spacex_images import fetch_spacex_launch
 
 
 def send_picture(picture_directory, timer):

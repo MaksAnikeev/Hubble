@@ -1,7 +1,7 @@
 import requests
 from dotenv import load_dotenv
 
-from python_save_images import create_pictures
+from save_images import create_pictures
 
 
 def fetch_spacex_launch(picture_path, flight_number=108):
