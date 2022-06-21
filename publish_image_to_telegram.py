@@ -26,9 +26,10 @@ def send_picture(picture_directory, flight_number, nasa_api_key, token, chat_id,
                           document=open(f'{picture_directory}/{random_picture}', 'rb'))
         time.sleep(timer)
         if not pictures:
-            fetch_spacex_launch(flight_number=108, picture_path=f'{picture_directory}/spacex')
-            fetch_nasa_pictures(quantity_pictures=5, picture_path=f'{picture_directory}/nasa_apod')
-            fetch_epic_nasa_pictures(quantity_pictures=5, picture_path=f'{picture_directory}/epic_nasa')
+            fetch_spacex_launch(picture_path='images/spacex', flight_number=flight_number)
+            fetch_nasa_pictures(quantity_pictures=30, picture_path='images/nasa_apod', nasa_api_key=nasa_api_key)
+            fetch_epic_nasa_pictures(quantity_pictures=5, picture_path=f'{picture_directory}/epic_nasa',
+                                     nasa_api_key=nasa_api_key)
             pictures = os.listdir(f'{picture_directory}/')
 
 
