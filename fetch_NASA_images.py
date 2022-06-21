@@ -6,10 +6,8 @@ from dotenv import load_dotenv
 from save_images import create_picture
 from save_images import create_directory
 
-def fetch_nasa_pictures(quantity_pictures, picture_path):
+def fetch_nasa_pictures(quantity_pictures, picture_path, nasa_api_key):
     nasa_url = 'https://api.nasa.gov/planetary/apod'
-    load_dotenv()
-    nasa_api_key = os.environ['NASA_API_KEY']
     payload = {
         'api_key': nasa_api_key,
         'count': quantity_pictures
@@ -25,4 +23,6 @@ def fetch_nasa_pictures(quantity_pictures, picture_path):
 
 
 if __name__ == '__main__':
-    fetch_nasa_pictures(quantity_pictures=30, picture_path='images/nasa_apod')
+    load_dotenv()
+    nasa_api_key = os.environ['NASA_API_KEY']
+    fetch_nasa_pictures(quantity_pictures=30, picture_path='images/nasa_apod', nasa_api_key=nasa_api_key)

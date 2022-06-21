@@ -1,13 +1,13 @@
+import os
+
 import requests
-from dotenv import load_dotenv
 
 from save_images import create_picture
 from save_images import create_directory
 
 
-def fetch_spacex_launch(picture_path, flight_number=108):
+def fetch_spacex_launch(picture_path, flight_number):
     spacexdata_url = 'https://api.spacexdata.com/v3/launches/past'
-    load_dotenv()
     payload = {'flight_number': flight_number}
     response_url = requests.get(spacexdata_url, params=payload)
     response_url.raise_for_status()
@@ -20,4 +20,5 @@ def fetch_spacex_launch(picture_path, flight_number=108):
 
 
 if __name__ == '__main__':
-    fetch_spacex_launch(picture_path='images/spacex')
+    flight_number = os.getenv('flight_number', default=108)
+    fetch_spacex_launch(picture_path='images/spacex', flight_number=flight_number)
