@@ -22,8 +22,8 @@ def send_picture(picture_directory, flight_number, nasa_api_key, token, chat_id,
     while True:
         random_picture = random.choice(pictures)
         pictures.remove(random_picture)
-        bot.send_document(chat_id=chat_id,
-                          document=open(f'{picture_directory}/{random_picture}', 'rb'))
+        with open(f'{picture_directory}/{random_picture}', 'rb') as file:
+            bot.send_document(chat_id=chat_id, document=file)
         time.sleep(timer)
         if not pictures:
             fetch_spacex_launch(picture_path='images/spacex', flight_number=flight_number)
@@ -41,5 +41,5 @@ if __name__ == '__main__':
     chat_id = os.environ['TG_CHAT_ID']
     timer = os.getenv('timer', default=14400)
     send_picture(picture_directory='images', flight_number = flight_number, nasa_api_key = nasa_api_key,
-                 token = token, chat_id=chat_id, timer=timer)
+                 token = token, chat_id=chat_id, timer=5)
 
