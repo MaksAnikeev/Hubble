@@ -1,5 +1,7 @@
+import argparse
 import datetime
 import os
+import sys
 
 import requests
 from dotenv import load_dotenv
@@ -25,4 +27,8 @@ def fetch_epic_nasa_pictures(quantity_pictures, picture_path, nasa_api_key):
 if __name__ == '__main__':
     load_dotenv()
     nasa_api_key = os.environ['NASA_API_KEY']
+    parser = argparse.ArgumentParser()
+    parser.add_argument('quantity_pictures', nargs='?', default=30)
+    parser.add_argument('picture_path', nargs='?', default='images/nasa_apod')
+    namespace = parser.parse_args(sys.argv[1:])
     fetch_epic_nasa_pictures(quantity_pictures=10, picture_path='images/epic_nasa', nasa_api_key=nasa_api_key)

@@ -14,7 +14,7 @@ from fetch_spacex_images import fetch_spacex_launch
 
 def send_picture(picture_directory, flight_number, nasa_api_key, token, chat_id, timer):
     fetch_spacex_launch(picture_path='images/spacex', flight_number=flight_number)
-    fetch_nasa_pictures(quantity_pictures=30, picture_path='images/nasa_apod', nasa_api_key=nasa_api_key)
+    fetch_nasa_pictures(quantity_pictures=5, picture_path='images/nasa_apod', nasa_api_key=nasa_api_key)
     fetch_epic_nasa_pictures(quantity_pictures=5, picture_path=f'{picture_directory}/epic_nasa', nasa_api_key=nasa_api_key)
 
     bot = telegram.Bot(token=token)
@@ -27,7 +27,7 @@ def send_picture(picture_directory, flight_number, nasa_api_key, token, chat_id,
         time.sleep(timer)
         if not pictures:
             fetch_spacex_launch(picture_path='images/spacex', flight_number=flight_number)
-            fetch_nasa_pictures(quantity_pictures=30, picture_path='images/nasa_apod', nasa_api_key=nasa_api_key)
+            fetch_nasa_pictures(quantity_pictures=5, picture_path='images/nasa_apod', nasa_api_key=nasa_api_key)
             fetch_epic_nasa_pictures(quantity_pictures=5, picture_path=f'{picture_directory}/epic_nasa',
                                      nasa_api_key=nasa_api_key)
             pictures = os.listdir(f'{picture_directory}/')
