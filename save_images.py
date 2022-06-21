@@ -19,5 +19,5 @@ def create_picture(picture_url, picture_path, picture_number):
 
 def define_ext(picture_url):
     parse_picture_url = urlparse(picture_url)
-    picture_ext = os.path.splitext(parse_picture_url.path)
-    return picture_ext[1]
+    picture_path, picture_ext = os.path.splitext(parse_picture_url.path)
+    return picture_ext
