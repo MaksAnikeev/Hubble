@@ -22,9 +22,7 @@ def fetch_spacex_launch(picture_path, flight_number = None):
         response_url.raise_for_status()
         pictures_url = response_url.json()[0]['links']['flickr_images']
     create_directory(picture_path)
-    picture_number = 0
-    for picture_url in pictures_url:
-        picture_number +=1
+    for picture_number, picture_url in enumerate(pictures_url):
         create_picture(picture_url, picture_path, picture_number)
 
 

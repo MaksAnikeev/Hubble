@@ -17,9 +17,7 @@ def fetch_nasa_pictures(quantity_pictures, picture_path, nasa_api_key):
     response = requests.get(nasa_url, params=payload)
     response.raise_for_status()
     create_directory(picture_path)
-    picture_number = 0
-    for picture in response.json()[:quantity_pictures]:
-        picture_number += 1
+    for picture_number, picture in enumerate(response.json()[:quantity_pictures]):
         create_picture(picture['url'], picture_path, picture_number)
 
 

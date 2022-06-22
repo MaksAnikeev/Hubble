@@ -15,12 +15,10 @@ def fetch_epic_nasa_pictures(quantity_pictures, picture_path, nasa_api_key):
     response = requests.get(epic_url, params=payload)
     response.raise_for_status()
     create_directory(picture_path)
-    picture_number = 0
-    for picture in response.json()[:quantity_pictures]:
+    for picture_number, picture in enumerate(response.json()[:quantity_pictures]):
         picture_epic_date = datetime.datetime.fromisoformat(picture['date']).strftime('%Y/%m/%d')
         epic_picture_url = f'https://api.nasa.gov/EPIC/archive/natural/{picture_epic_date}/png' \
                            f'/{picture["image"]}.png?api_key={payload["api_key"]}'
-        picture_number += 1
         create_picture(epic_picture_url, picture_path, picture_number)
 
 
