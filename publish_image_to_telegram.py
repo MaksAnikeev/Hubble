@@ -19,7 +19,12 @@ def fill_directory(picture_directory, flight_number, nasa_api_key):
 
 def send_picture(picture_directory, flight_number, nasa_api_key, token, chat_id, timer, picture_user_path=None):
     bot = telegram.Bot(token=token)
-    if picture_user_path == None:
+    if picture_user_path:
+        with open(picture_user_path, 'rb') as file:
+            bot.send_document(chat_id=chat_id, document=file)
+        time.sleep(timer)
+        send_picture(picture_directory, flight_number, nasa_api_key, token, chat_id, timer)
+    else:
         if not os.path.exists(picture_directory) or not os.listdir(f'{picture_directory}/'):
             fill_directory(picture_directory, flight_number, nasa_api_key)
             send_picture(picture_directory, flight_number, nasa_api_key, token, chat_id, timer)
@@ -34,11 +39,7 @@ def send_picture(picture_directory, flight_number, nasa_api_key, token, chat_id,
             else:
                 fill_directory(picture_directory, flight_number, nasa_api_key)
                 send_picture(picture_directory, flight_number, nasa_api_key, token, chat_id, timer)
-    else:
-        with open(picture_user_path, 'rb') as file:
-            bot.send_document(chat_id=chat_id, document=file)
-        time.sleep(timer)
-        send_picture(picture_directory, flight_number, nasa_api_key, token, chat_id, timer)
+
 
 if __name__ == '__main__':
     load_dotenv()
