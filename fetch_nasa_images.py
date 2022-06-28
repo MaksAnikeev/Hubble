@@ -29,4 +29,5 @@ if __name__ == '__main__':
     parser.add_argument('picture_path', nargs='?', default='images/nasa_apod')
     namespace = parser.parse_args(sys.argv[1:])
     fetch_nasa_pictures(quantity_pictures=namespace.quantity_pictures,
-                        picture_path=namespace.picture_path, nasa_api_key=nasa_api_key)
+                        picture_path=namespace.picture_path,
+                        nasa_api_key=nasa_api_key)
