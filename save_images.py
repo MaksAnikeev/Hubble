@@ -10,7 +10,7 @@ def create_directory(picture_path):
     Path(directory[0]).mkdir(parents=True, exist_ok=True)
 
 
-def create_picture(picture_url, picture_path, picture_number):
+def download_picture(picture_url, picture_path, picture_number):
     response_picture = requests.get(picture_url)
     response_picture.raise_for_status()
     with open(f'{picture_path}_{picture_number}{define_ext(picture_url)}', 'wb') as file:

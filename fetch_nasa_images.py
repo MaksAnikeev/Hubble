@@ -5,7 +5,7 @@ import sys
 import requests
 from dotenv import load_dotenv
 
-from save_images import create_picture
+from save_images import download_picture
 from save_images import create_directory
 
 def fetch_nasa_pictures(quantity_pictures, picture_path, nasa_api_key):
@@ -18,7 +18,7 @@ def fetch_nasa_pictures(quantity_pictures, picture_path, nasa_api_key):
     response.raise_for_status()
     create_directory(picture_path)
     for picture_number, picture in enumerate(response.json()[:quantity_pictures]):
-        create_picture(picture['url'], picture_path, picture_number)
+        download_picture(picture['url'], picture_path, picture_number)
 
 
 if __name__ == '__main__':

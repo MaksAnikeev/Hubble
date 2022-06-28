@@ -6,7 +6,7 @@ import sys
 import requests
 from dotenv import load_dotenv
 
-from save_images import create_picture
+from save_images import download_picture
 from save_images import create_directory
 
 def fetch_epic_nasa_pictures(quantity_pictures, picture_path, nasa_api_key):
@@ -19,7 +19,7 @@ def fetch_epic_nasa_pictures(quantity_pictures, picture_path, nasa_api_key):
         picture_epic_date = datetime.datetime.fromisoformat(picture['date']).strftime('%Y/%m/%d')
         epic_picture_url = f'https://api.nasa.gov/EPIC/archive/natural/{picture_epic_date}/png' \
                            f'/{picture["image"]}.png?api_key={payload["api_key"]}'
-        create_picture(epic_picture_url, picture_path, picture_number)
+        download_picture(epic_picture_url, picture_path, picture_number)
 
 
 if __name__ == '__main__':

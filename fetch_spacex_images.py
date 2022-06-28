@@ -2,7 +2,7 @@ import os
 
 import requests
 
-from save_images import create_picture
+from save_images import download_picture
 from save_images import create_directory
 
 
@@ -23,7 +23,7 @@ def fetch_spacex_launch(picture_path, flight_number = None):
         pictures_url = response_url.json()[0]['links']['flickr_images']
     create_directory(picture_path)
     for picture_number, picture_url in enumerate(pictures_url):
-        create_picture(picture_url, picture_path, picture_number)
+        download_picture(picture_url, picture_path, picture_number)
 
 
 if __name__ == '__main__':
