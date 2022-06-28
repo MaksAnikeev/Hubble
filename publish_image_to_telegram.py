@@ -21,38 +21,36 @@ def fill_directory(picture_directory, flight_number, nasa_api_key):
                              nasa_api_key=nasa_api_key)
 
 
-def send_random_picture(picture_directory, flight_number, nasa_api_key, chat_id, token, timer):
-    bot = telegram.Bot(token=token)
+def send_random_space_picture(picture_directory, flight_number, nasa_api_key, chat_id, token, timer):
     pictures = os.listdir(f'{picture_directory}/')
     while pictures:
         random_picture = random.choice(pictures)
+        send_picture(chat_id, token, picture_path=f'{picture_directory}/{random_picture}')
         pictures.remove(random_picture)
-        with open(f'{picture_directory}/{random_picture}', 'rb') as file:
-            bot.send_document(chat_id=chat_id, document=file)
         time.sleep(timer)
     else:
         fill_directory(picture_directory, flight_number, nasa_api_key)
-        send_random_picture(picture_directory, flight_number, nasa_api_key, chat_id, token, timer)
+        send_random_space_picture(picture_directory, flight_number, nasa_api_key, chat_id, token, timer)
 
 
-def send_user_picture(chat_id, token, timer, picture_user_path):
+def send_picture(chat_id, token, picture_path):
     bot = telegram.Bot(token=token)
-    with open(picture_user_path, 'rb') as file:
+    with open(picture_path, 'rb') as file:
         bot.send_document(chat_id=chat_id, document=file)
-        time.sleep(timer)
 
 
-def send_picture(picture_directory, flight_number, nasa_api_key, chat_id, token, timer,
+def send_picture_to_telegram(picture_directory, flight_number, nasa_api_key, chat_id, token, timer,
                  picture_user_path=None):
     if picture_user_path:
-        send_user_picture(chat_id, token, timer, picture_user_path)
-        send_picture(picture_directory, flight_number, nasa_api_key, chat_id, token, timer)
+        send_picture(chat_id, token, picture_path=picture_user_path)
+        time.sleep(timer)
+        send_picture_to_telegram(picture_directory, flight_number, nasa_api_key, chat_id, token, timer)
     else:
         if os.path.exists(picture_directory) and os.listdir(f'{picture_directory}/'):
-            send_random_picture(picture_directory, flight_number, nasa_api_key, chat_id, token, timer)
+            send_random_space_picture(picture_directory, flight_number, nasa_api_key, chat_id, token, timer)
         else:
             fill_directory(picture_directory, flight_number, nasa_api_key)
-            send_random_picture(picture_directory, flight_number, nasa_api_key, chat_id, token, timer)
+            send_random_space_picture(picture_directory, flight_number, nasa_api_key, chat_id, token, timer)
 
 
 if __name__ == '__main__':
@@ -64,10 +62,10 @@ if __name__ == '__main__':
     chat_id = os.environ['TG_CHAT_ID']
     timer = os.getenv('timer', default=14400)
 
-    send_picture(picture_directory='images',
+    send_picture_to_telegram(picture_directory='images',
                  flight_number=None,
                  nasa_api_key=nasa_api_key,
                  token=token,
                  chat_id=chat_id,
-                 timer=4,
+                 timer=timer,
                  picture_user_path="C:\Документы Макс\Программирование\Devman\Уроки\васильки.jpg")
