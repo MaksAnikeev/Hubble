@@ -5,8 +5,8 @@ import time
 import telegram
 from dotenv import load_dotenv
 
-from fetch_EPIC_images import fetch_epic_nasa_pictures
-from fetch_NASA_images import fetch_nasa_pictures
+from fetch_epic_images import fetch_epic_nasa_pictures
+from fetch_nasa_images import fetch_nasa_pictures
 from fetch_spacex_images import fetch_spacex_launch
 
 
