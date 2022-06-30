@@ -11,10 +11,10 @@ def create_directory(picture_path):
 
 
 def download_picture(picture_url, picture_path, picture_number):
-    response_picture = requests.get(picture_url)
-    response_picture.raise_for_status()
+    picture_response = requests.get(picture_url)
+    picture_response.raise_for_status()
     with open(f'{picture_path}_{picture_number}{define_ext(picture_url)}', 'wb') as file:
-            file.write(response_picture.content)
+            file.write(picture_response.content)
 
 
 def define_ext(picture_url):

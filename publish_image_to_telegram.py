@@ -13,10 +13,10 @@ from fetch_spacex_images import fetch_spacex_launch
 def fill_directory(picture_directory, flight_number, nasa_api_key):
     fetch_spacex_launch(picture_path=f'{picture_directory}/spacex',
                         flight_number=flight_number)
-    fetch_nasa_pictures(quantity_pictures=20,
+    fetch_nasa_pictures(pictures_quantity=20,
                         picture_path=f'{picture_directory}/nasa_apod',
                         nasa_api_key=nasa_api_key)
-    fetch_epic_nasa_pictures(quantity_pictures=5,
+    fetch_epic_nasa_pictures(pictures_quantity=5,
                              picture_path=f'{picture_directory}/epic_nasa',
                              nasa_api_key=nasa_api_key)
 
