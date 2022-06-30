@@ -8,7 +8,7 @@ from pathlib import Path
 
 from save_images import download_picture
 
-def fetch_nasa_pictures(pictures_quantity, picture_path, nasa_api_key):
+def fetch_spacex_nasa_pictures(pictures_quantity, picture_path, nasa_api_key):
     nasa_url = 'https://api.nasa.gov/planetary/apod'
     payload = {
         'api_key': nasa_api_key,
@@ -29,6 +29,6 @@ if __name__ == '__main__':
     parser.add_argument('pictures_quantity', nargs = '?', default=10)
     parser.add_argument('picture_path', nargs='?', default='images/nasa_apod')
     namespace = parser.parse_args(sys.argv[1:])
-    fetch_nasa_pictures(pictures_quantity=namespace.pictures_quantity,
+    fetch_spacex_nasa_pictures(pictures_quantity=namespace.pictures_quantity,
                         picture_path=namespace.picture_path,
                         nasa_api_key=nasa_api_key)

@@ -9,7 +9,7 @@ from pathlib import Path
 
 from save_images import download_picture
 
-def fetch_epic_nasa_pictures(pictures_quantity, picture_path, nasa_api_key):
+def fetch_earth_nasa_pictures(pictures_quantity, picture_path, nasa_api_key):
     epic_url = 'https://api.nasa.gov/EPIC/api/natural/images'
     payload = {'api_key': nasa_api_key}
     response = requests.get(epic_url, params=payload)
@@ -30,4 +30,4 @@ if __name__ == '__main__':
     parser.add_argument('pictures_quantity', nargs='?', default=30)
     parser.add_argument('picture_path', nargs='?', default='images/nasa_apod')
     namespace = parser.parse_args(sys.argv[1:])
-    fetch_epic_nasa_pictures(pictures_quantity=10, picture_path='images/epic_nasa', nasa_api_key=nasa_api_key)
+    fetch_earth_nasa_pictures(pictures_quantity=10, picture_path='images/epic_nasa', nasa_api_key=nasa_api_key)
