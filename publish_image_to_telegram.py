@@ -61,6 +61,7 @@ if __name__ == '__main__':
     token = os.environ['TG_TOKEN']
     chat_id = os.environ['TG_CHAT_ID']
     timer = os.getenv('timer', default=14400)
+    picture_user_path = os.path.join('user_images', 'васильки.jpg')
 
     send_pictures_to_telegram(picture_directory='images',
                  flight_number=None,
@@ -68,4 +69,4 @@ if __name__ == '__main__':
                  token=token,
                  chat_id=chat_id,
                  timer=timer,
-                 picture_user_path="C:\Документы Макс\Программирование\Devman\Уроки\васильки.jpg")
+                 picture_user_path=picture_user_path)
