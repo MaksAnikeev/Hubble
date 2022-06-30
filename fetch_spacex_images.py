@@ -1,9 +1,9 @@
 import os
 
 import requests
+from pathlib import Path
 
 from save_images import download_picture
-from save_images import create_directory
 
 
 def fetch_spacex_launch(picture_path,
@@ -22,7 +22,8 @@ def fetch_spacex_launch(picture_path,
             if response['links']['flickr']['original']:
                 pictures_url = response['links']['flickr']['original']
                 break
-    create_directory(picture_path)
+    directory = os.path.split(picture_path)
+    Path(directory[0]).mkdir(parents=True, exist_ok=True)
     for picture_number, picture_url in enumerate(pictures_url):
         download_picture(picture_url, picture_path, picture_number)
 

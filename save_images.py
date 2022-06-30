@@ -1,13 +1,7 @@
 import os
-from pathlib import Path
 from urllib.parse import urlparse
 
 import requests
-
-
-def create_directory(picture_path):
-    directory = os.path.split(picture_path)
-    Path(directory[0]).mkdir(parents=True, exist_ok=True)
 
 
 def download_picture(picture_url, picture_path, picture_number):
