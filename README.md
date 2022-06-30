@@ -11,13 +11,13 @@ fetch_spacex_launch(picture_path='images/spacex', flight_number=None)
 - NASA. Можно скачать много красивых снимков космоса (задается количество необходимых фотографий)
 файл `fetch_NASA_images.py`.
 ```py
-fetch_spacex_nasa_pictures(pictures_quantity=30,
+fetch_space_pictures_from_nasa(pictures_quantity=30,
                         picture_path='images/nasa_apod', nasa_api_key=nasa_api_key)
 ```
 - EPIC: Earth Polychromatic Imaging Camera. Можно скачать фотографии земли с космоса (задается количество необходимых фотографий)
 файл `fetch_EPIC_images.py`.
 ```py
-fetch_earth_nasa_pictures(pictures_quantity=10, picture_path='images/epic_nasa', nasa_api_key=nasa_api_key)
+fetch_earth_pictures_from_nasa(pictures_quantity=10, picture_path='images/epic_nasa', nasa_api_key=nasa_api_key)
 ```
 
 А затем передавать их в телеграмм по таймеру файл `publish_image_to_telegram.py`. 

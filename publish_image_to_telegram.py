@@ -5,18 +5,18 @@ import time
 import telegram
 from dotenv import load_dotenv
 
-from fetch_earth_nasa_images import fetch_earth_nasa_pictures
-from fetch_spacex_nasa_images import fetch_spacex_nasa_pictures
+from fetch_earth_images_from_nasa_ import fetch_earth_pictures_from_nasa
+from fetch_space_images_from_nasa_ import fetch_space_pictures_from_nasa
 from fetch_spacex_launch_images import fetch_spacex_launch
 
 
 def fill_directory(picture_directory, flight_number, nasa_api_key):
     fetch_spacex_launch(picture_path=f'{picture_directory}/spacex',
                         flight_number=flight_number)
-    fetch_spacex_nasa_pictures(pictures_quantity=20,
+    fetch_space_pictures_from_nasa(pictures_quantity=20,
                         picture_path=f'{picture_directory}/nasa_apod',
                         nasa_api_key=nasa_api_key)
-    fetch_earth_nasa_pictures(pictures_quantity=5,
+    fetch_earth_pictures_from_nasa(pictures_quantity=5,
                              picture_path=f'{picture_directory}/epic_nasa',
                              nasa_api_key=nasa_api_key)
 
