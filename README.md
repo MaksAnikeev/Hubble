@@ -33,8 +33,8 @@ send_picture(picture_directory='images', flight_number=None, nasa_api_key=nasa_a
 
 ```py
 send_picture(picture_directory='images', flight_number=None, nasa_api_key=nasa_api_key,
-                 token=token, chat_id=chat_id, timer=5,
-                 picture_user_path="C:/Документы Макс/Программирование/Devman/Уроки/5 неделя/герберы.jpg")
+             token=token, chat_id=chat_id, timer=5,
+             picture_user_path="/Уроки/5 неделя/герберы.jpg")
 ```
 
 ### Как установить
